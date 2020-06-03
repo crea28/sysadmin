@@ -1,0 +1,5 @@
+---
+- hosts: all
+  tasks:
+    - name : free mem
+      command: "sysctl -w vm.drop_caches=3" 

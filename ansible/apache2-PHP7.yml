@@ -1,0 +1,61 @@
+---
+- hosts: all
+  tasks:
+    - name : Apache2/PHP7.0 - Install
+      apt: name={{ item }} update_cache=yes state=latest
+      with_items:
+        - apache2
+        - apache2-bin
+        - apache2-data
+        - apache2-utils
+        - php7.0
+        - php7.0-cli
+        - php7.0-common
+        - php7.0-curl
+        - php7.0-cli
+        - php7.0-mcrypt
+        - php7.0-imagick
+        - php7.0-json
+        - php7.0-mysqlnd
+        - php7.0-readline
+        - php7.0-gd
+        - php7.0-xsl
+        - libapache2-mod-php7.0
+    - apache2_module: name=rewrite state=present
+    - apache2_module: name=ssl state=present
+    - apache2_module: name=headers state=present
+    - apache2_module: name=deflate state=present
+    - apache2_module: name=expires state=present
+
+    - name : Apache2/PHP7.0 - Security ServerTokens setting
+      lineinfile: dest=/etc/apache2/conf-available/security.conf regexp="^ServerTokens " line="ServerTokens Prod" state=present 
+    
+    - name : Apache2/PHP7.0 - Security ServerSignature setting
+      lineinfile: dest=/etc/apache2/conf-available/security.conf regexp="^ServerSignature " line="ServerSignature Off" state=present 
+      #notify:
+      # - restart apache2
+   
+    - name: PHP7.0 - upload_max_filesize setting
+      lineinfile: dest=/etc/php/7.0/apache2/php.ini regexp="^upload_max_filesize = " line="upload_max_filesize = 256M" state=present 
+      
+    - name: PHP7.0 - post_max_size setting
+      lineinfile: dest=/etc/php/7.0/apache2/php.ini regexp="^post_max_size = " line="post_max_size = 256M" state=present 
+
+    - name: PHP7.0 - max_execution_time setting
+      lineinfile: dest=/etc/php/7.0/apache2/php.ini regexp="^max_execution_time = " line="max_execution_time = 300" state=present 
+
+    - name: PHP7.0 - date.timezone setting
+      lineinfile: dest=/etc/php/7.0/apache2/php.ini regexp="^date.timezone = " line="date.timezone = Etc/GMT" state=present 
+
+    - name: PHP7.0 - short_open_tag setting
+      lineinfile: dest=/etc/php/7.0/apache2/php.ini regexp="^short_open_tag = " line="short_open_tag = Off" state=present 
+
+    - name: PHP7.0 - memory_limit setting
+      lineinfile: dest=/etc/php/7.0/apache2/php.ini regexp="^memory_limit = " line="memory_limit = 128M" state=present 
+
+    # don't forget to add logrotate file
+    - name: Logrotate - Configuration
+      template: src=/[dir]/src/logrotate/apache2 dest=/etc/logrotate.d/apache2 owner=root group=root mode=644
+
+    - name: chown and chmod www-data
+      command: "chown -R www-data.www-data /[dir]/sites"

@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+    - name : System - update
+      command: "aptitude update" 
+
+    - name : System - safe-upgrade
+      command: "aptitude -y safe-upgrade"
+    
+    - name : System - dist-upgrade
+      command: "aptitude -y dist-upgrade"

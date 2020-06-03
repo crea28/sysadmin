@@ -1,0 +1,59 @@
+---
+- hosts: all
+  tasks:
+    - name : System - Create directories
+      file: path={{ item }} state=directory mode=0755
+      with_items:
+        - /[dir]/sites/
+        - /[dir]/scripts/
+        - /[dir]/logs/
+        - /[dir]/logs/apache2/
+        - /[dir]/tmp/
+        - /[dir]/backup/
+        - /[dir]/Scripts/
+
+    - name : System - Packages
+      apt: package={{ item }} state=installed force=yes update_cache=yes
+      with_items:
+        - curl
+        - ftp
+        - imagemagick
+        - rsync
+        - lshw
+        - smartmontools
+        - bzip2
+        - zip
+        - unzip
+        - tar
+        - htop
+        - vim
+        - debian-keyring
+        - debian-archive-keyring
+        - libwww-perl
+        - openntpd
+        - ntpdate
+        - tzdata
+        - pure-ftpd
+        - gcc
+        - build-essential
+        - ghostscript
+        - curlftpfs
+        - libjasper1
+        - libjpeg62
+        - nagios-nrpe-plugin
+        - nagios-nrpe-server 
+        - sudo
+        - iotop
+
+    - name: System - Security Packages
+      apt: package={{ item }} state=installed force=yes update_cache=yes
+      with_items:
+        - fail2ban
+        - chkrootkit 
+        - rkhunter 
+
+    - name: System - vimrc file
+      template: src=/[dir]/src/vim/vimrc dest=/[dir]/.vimrc owner=owner group=group mode=775
+
+    - name: Timezone Europe/Paris
+      template: src=/[dir]/src/locales/timezone dest=/etc/timezone owner=owner group=group mode=775

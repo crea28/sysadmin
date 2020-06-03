@@ -1,0 +1,31 @@
+---
+- hosts: all
+  tasks:
+    - name : Postfix - Install
+      apt: package={{ item }} state=installed force=yes update_cache=yes
+      with_items:
+        - postfix
+
+    - name : Postfix - Canonical file
+      template: src="/[dir]/src/postfix/canonical" dest="/etc/postfix/canonical" owner=[dir] group=[dir] mode=775
+
+    - name : Postfix - Generic file
+      template: src="/[dir]/src/postfix/generic.j2" dest="/etc/postfix/generic" owner=[dir] group=[dir] mode=775
+    
+    - name : Postfix - Main configuration file
+      template: src="/[dir]/src/postfix/main.cf.j2" dest="/etc/postfix/main.cf" owner=[dir] group=[dir] mode=775
+
+    - name: Postfix - Generate generic file
+      command : "/usr/sbin/postmap /etc/postfix/generic"
+
+    - name: Postfix - Generate canonical file
+      command : "/usr/sbin/postmap /etc/postfix/canonical"
+
+    - name: Postfix - Reboot
+      command : "/etc/init.d/postfix restart"
+
+    - name: Exim4 - Remove
+      apt: name=exim4 state=absent purge=yes
+      apt: name=exim4-base state=absent purge=yes
+      apt: name=exim4-config state=absent purge=yes
+      apt: name=exim4-daemon-light state=absent purge=yes
