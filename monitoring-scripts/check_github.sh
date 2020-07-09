@@ -1,8 +1,8 @@
 #!/bin/bash
 # Script : check_github.sh
-# Author : crea28.fr
+# https://www.githubstatus.com/api
 
-VERSION="1.1"
+VERSION="1.2"
 
 # Exit codes
 STATE_OK=0
@@ -12,23 +12,29 @@ STATE_UNKNOWN=3
 
 shopt -s extglob
 
-STATUS_GITHUB=`curl --silent 'https://status.github.com/api/status.json' | python -mjson.tool | grep "status" | awk -F ":" '{print $2}' | sed 's/"//g'`;
+STATUS_GITHUB=`curl --silent 'https://kctbh9vrtdwd.statuspage.io/api/v2/status.json' | python -mjson.tool | grep "indicator" | awk -F ":" '{print $2}' | sed 's/"//g' | xargs`;
 
-if [[ `echo ${STATUS_GITHUB}` == "major" ]]; then
-    printf "Github.com - CRITICAL"
-    printf "Check on https://status.github.com/"
-    exit ${STATE_CRITICAL}
-fi
-
-if [[ `echo ${STATUS_GITHUB}` == "minor" ]]; then
-    printf "Github.com - WARNING"
-    printf "Check on https://status.github.com/"
-    exit ${STATE_WARNING}
-fi
-
-if [ `echo ${STATUS_GITHUB}` == "good" ]; then
-    printf "Github.com - OK"
-    exit ${STATE_OK}
-fi
+case ${STATUS_GITHUB} in
+	none)
+		echo "Github is running (status=${STATUS_GITHUB})"
+    		exit ${STATE_OK}
+		;;
+	minor)
+		echo "Github seems in trouble (status=${STATUS_GITHUB})"
+		exit ${STATE_WARNING}
+		;;
+	major)
+		echo "Github seems in trouble (status=${STATUS_GITHUB})"
+		exit ${STATE_WARNING}
+		;;
+	critical)
+		echo "Github is down (status=${STATUS_GITHUB})"
+		exit ${STATE_CRITICAL}
+		;;
+	*)
+		echo "Script error"
+		exit ${STATE_UNKNOWN}
+		;;
+esac
 
 exit ${STATE_UNKNOWN}
