@@ -51,6 +51,9 @@ It's free to use and modify.
 #### check_rbt_queue.sh
 	(used with sudo) check the number of message in specifics rabbitmq queues
 
+#### check_cpu.sh
+	check the cpu load. Warning end critical tresholds can be modified into the script
+
 
 - **scripts :** contains files personnal scripts and files can be used for backups and sysadmin 
 
