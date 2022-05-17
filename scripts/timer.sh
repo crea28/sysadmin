@@ -1,5 +1,6 @@
 #!/bin/bash
 # timer.sh 
+# apt-get update && apt-get install pico2wave
 # test script
 
 display_usage() {
