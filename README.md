@@ -78,4 +78,4 @@ It's free to use and modify.
 	[test] create a timer (minutes/seconds) to send an audio and ubuntu desktop notification
 
 #### gen_thumb.sh
-	create a thumb dir ans create a thumb file for all .jpg and .JPG picture
+	create a thumb dir ans create a thumb file for all .jpg and .JPG picture.
