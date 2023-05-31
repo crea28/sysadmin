@@ -35,18 +35,18 @@ It's free to use and modify.
 |check_cpu.sh|check the cpu load. Warning end critical tresholds can be modified into the script|
 
 
-- **scripts :** contains files personnal scripts and files can be used for backups and sysadmin 
+- **scripts :** contains files personnal scripts and files can be used for backups, sysadmin and other stuff
 
 |Script|Description|
 |--|--|
+|createRabbitMQ.sh|	create/delete/list informations about RabbitMQ instance|
+|feed.py|print a RSS feed into term|
+|gen_thumb.sh|create a thumb dir ans create a thumb file for all .jpg and .JPG picture|
+|save_es.sh|create a dump of elasticsearch indexes|
+|save_mongodb.sh|create a dump of all databases|
 |save_mysql.sh|create a mysqldump of all databases. You have to create a ~/.my.cnf file or modify the script|
 |send_amazon_s3.sh|send_amazon_s3.sh file.tar.gz. Send a file to an Amazon s3 bucket|
-|save_mongodb.sh|create a dump of all databases|
-|save_es.sh|create a dump of elasticsearch indexes|
-|createRabbitMQ.sh|	create/delete/list informations about RabbitMQ instance|
 |timer.sh| [test] create a timer (minutes/seconds) to send an audio and ubuntu desktop notification|
-|gen_thumb.sh|create a thumb dir ans create a thumb file for all .jpg and .JPG picture|
-
 
 ### Security Resources
 - [https://www.cisecurity.org/cis-benchmarks](https://www.cisecurity.org/cis-benchmarks)
