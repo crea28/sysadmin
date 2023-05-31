@@ -1,0 +1,72 @@
+#!/usr/bin/python3
+# feed.py
+# Print a simple RSS feed into a terminal
+
+import feedparser
+import dateutil.parser
+from datetime import datetime, timedelta
+import pytz
+import time
+import os
+from urllib.parse import urlparse
+import signal
+import sys
+from colorama import Fore, Style
+
+# CTRL+C
+def handle_sigint(signal, frame):
+    print("\nProgram stopped.")
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, handle_sigint)
+
+rss_urls = [
+    'https://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml',
+    'https://www.cert.ssi.gouv.fr/feed/',
+    'https://securite.developpez.com/index/rss',
+    'https://www.it-connect.fr/actualites/actu-securite/feed/',
+    'https://www.programmez.com/taxonomy/term/104/feed'
+    'https://www.undernews.fr/feed'
+    'https://www.datasecuritybreach.fr/feed/'
+    'https://www.lemonde.fr/piratage/rss_full.xml'
+    'https://www.cnil.fr/fr/rss.xml'
+    'https://feeds.feedburner.com/zataz/lhOa'
+    'https://www.alliancy.fr/cybersecurite/feed'
+    'https://www.presse-citron.net/category/cybersecurite/feed/'
+    'https://www.zdnet.fr/feeds/rss/actualites/cyberattaque-4000237415q.htm'
+    'https://www.archimag.com/taxonomy/term/2625/feed'
+    ]
+
+refresh_rate = 300
+# Infinite loop with a refresh every x seconds
+while True:
+    try:
+        entries = []
+
+        for url in rss_urls:
+            feed = feedparser.parse(url)
+            entries.extend(feed.entries)
+
+        # Determine the start and end dates of the 7-day period
+        today = datetime.now(pytz.utc)
+        start_date = today - timedelta(days=7)
+        end_date = today
+
+        # Sort entries by publication date and display only entries from the last 7 days
+        sorted_entries = sorted([entry for entry in entries if hasattr(entry, 'published') and dateutil.parser.parse(entry.published).replace(tzinfo=pytz.utc) >= start_date and dateutil.parser.parse(entry.published).replace(tzinfo=pytz.utc) <= end_date], key=lambda entry: dateutil.parser.parse(entry.published).timestamp(), reverse=True)
+
+        os.system('clear')  # Clean the term
+
+        print(Fore.GREEN + "Texte en vert" + Style.RESET_ALL)
+
+        # Display entries sorted by publication date
+        for entry in sorted_entries:
+            published_date = dateutil.parser.parse(entry.published)
+            formatted_date = published_date.strftime('%Y-%m-%d')
+            # OK
+            domain = urlparse(entry.link).netloc
+            print(f"{formatted_date} [{domain}] {entry.title}")
+        time.sleep(refresh_rate)
+        pass
+    except KeyboardInterrupt:
+        handle_sigint(None, None)
