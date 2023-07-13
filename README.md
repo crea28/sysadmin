@@ -47,6 +47,7 @@ It's free to use and modify.
 |save_mysql.sh|create a mysqldump of all databases. You have to create a ~/.my.cnf file or modify the script|
 |send_amazon_s3.sh|send_amazon_s3.sh file.tar.gz. Send a file to an Amazon s3 bucket|
 |timer.sh| [test] create a timer (minutes/seconds) to send an audio and ubuntu desktop notification|
+|watermark.sh|create watermarked picture|
 
 ### Security Resources
 - [https://www.cisecurity.org/cis-benchmarks](https://www.cisecurity.org/cis-benchmarks)
