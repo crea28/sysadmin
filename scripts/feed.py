@@ -18,6 +18,9 @@ def handle_sigint(signal, frame):
     print("\nProgram stopped.")
     sys.exit(0)
 
+# Important keywords
+keywords = ["Debian", "debian","MongoDB","ubuntu","Ubuntu","MySQL","mysql","PostgreSQL","postgresql","Veeam"]
+
 signal.signal(signal.SIGINT, handle_sigint)
 
 rss_urls = [
@@ -57,15 +60,19 @@ while True:
 
         os.system('clear')  # Clean the term
 
-        print(Fore.GREEN + "Texte en vert" + Style.RESET_ALL)
-
         # Display entries sorted by publication date
         for entry in sorted_entries:
             published_date = dateutil.parser.parse(entry.published)
             formatted_date = published_date.strftime('%Y-%m-%d')
             # OK
             domain = urlparse(entry.link).netloc
-            print(f"{formatted_date} [{domain}] {entry.title}")
+            # Check Keywords
+            if any(keyword in entry.title for keyword in keywords):
+                title_text = Fore.YELLOW + entry.title + Style.RESET_ALL
+            else:
+                title_text = entry.title
+
+            print(f"{formatted_date} [{domain}] {title_text}")
         time.sleep(refresh_rate)
         pass
     except KeyboardInterrupt:
