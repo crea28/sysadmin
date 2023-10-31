@@ -19,7 +19,7 @@ def handle_sigint(signal, frame):
     sys.exit(0)
 
 # Important keywords
-keywords = ["Debian","MongoDB","Ubuntu","MySQL","PostgreSQL","Veeam","ClamAV","VMware","ElasticSearch","Elasticsearch"]
+keywords = ["Debian","MongoDB","Ubuntu","MySQL","PostgreSQL","Veeam","ClamAV","VMware","ElasticSearch","Elasticsearch", "Apache", "Grafana"]
 
 signal.signal(signal.SIGINT, handle_sigint)
 
@@ -28,19 +28,20 @@ rss_urls = [
     'https://www.cert.ssi.gouv.fr/feed/',
     'https://securite.developpez.com/index/rss',
     'https://www.it-connect.fr/actualites/actu-securite/feed/',
-    'https://www.programmez.com/taxonomy/term/104/feed'
-    'https://www.undernews.fr/feed'
-    'https://www.datasecuritybreach.fr/feed/'
-    'https://www.lemonde.fr/piratage/rss_full.xml'
-    'https://www.cnil.fr/fr/rss.xml'
-    'https://feeds.feedburner.com/zataz/lhOa'
-    'https://www.alliancy.fr/cybersecurite/feed'
-    'https://www.presse-citron.net/category/cybersecurite/feed/'
-    'https://www.zdnet.fr/feeds/rss/actualites/cyberattaque-4000237415q.htm'
-    'https://www.archimag.com/taxonomy/term/2625/feed'
+    'https://www.programmez.com/taxonomy/term/104/feed',
+    'https://www.undernews.fr/feed',
+    'https://www.datasecuritybreach.fr/feed/',
+    'https://www.lemonde.fr/piratage/rss_full.xml',
+    'https://www.cnil.fr/fr/rss.xml',
+    'https://feeds.feedburner.com/zataz/lhOa',
+    'https://www.alliancy.fr/cybersecurite/feed',
+    'https://www.presse-citron.net/category/cybersecurite/feed/',
+    'https://www.zdnet.fr/feeds/rss/actualites/cyberattaque-4000237415q.htm',
+    'https://www.archimag.com/taxonomy/term/2625/feed',
+    'https://feed.infoq.com'
     ]
 
-refresh_rate = 300
+refresh_rate = 600
 # Infinite loop with a refresh every x seconds
 while True:
     try:
@@ -50,9 +51,9 @@ while True:
             feed = feedparser.parse(url)
             entries.extend(feed.entries)
 
-        # Determine the start and end dates of the 7-day period
+        # Determine the start and end dates of the X-day period
         today = datetime.now(pytz.utc)
-        start_date = today - timedelta(days=7)
+        start_date = today - timedelta(days=4)
         end_date = today
 
         # Sort entries by publication date and display only entries from the last 7 days
