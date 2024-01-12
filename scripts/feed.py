@@ -19,7 +19,7 @@ def handle_sigint(signal, frame):
     sys.exit(0)
 
 # Important keywords
-keywords = ["Debian","MongoDB","Ubuntu","MySQL","PostgreSQL","Veeam","ClamAV","VMware","ElasticSearch","Elasticsearch", "Apache", "Grafana"]
+keywords = ["Debian","MongoDB","Ubuntu","MySQL","PostgreSQL","Veeam","ClamAV","VMware","ElasticSearch","Elasticsearch", "Apache", "Grafana","OpenVPN","Amazon","Google"]
 
 signal.signal(signal.SIGINT, handle_sigint)
 
