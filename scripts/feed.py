@@ -39,7 +39,7 @@ rss_urls = [
     'https://www.zdnet.fr/feeds/rss/actualites/cyberattaque-4000237415q.htm',
     'https://www.archimag.com/taxonomy/term/2625/feed',
     'https://feed.infoq.com',
-    'https://blog.ovhcloud.com/feed/''
+    'https://blog.ovhcloud.com/feed/'
     ]
 
 refresh_rate = 600
