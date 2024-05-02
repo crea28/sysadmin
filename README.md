@@ -48,6 +48,7 @@ It's free to use and modify.
 |send_amazon_s3.sh|send_amazon_s3.sh file.tar.gz. Send a file to an Amazon s3 bucket|
 |timer.sh| [test] create a timer (minutes/seconds) to send an audio and ubuntu desktop notification|
 |watermark.sh|create watermarked picture|
+|git-backup.sh|create backup of private and public repositories|
 
 ### Security Resources
 - [https://www.cisecurity.org/cis-benchmarks](https://www.cisecurity.org/cis-benchmarks)
