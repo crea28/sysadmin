@@ -19,7 +19,7 @@ def handle_sigint(signal, frame):
     sys.exit(0)
 
 # Important keywords
-keywords = ["Debian","MongoDB","Ubuntu","MySQL","PostgreSQL","Veeam","ClamAV","VMware","ElasticSearch","Elasticsearch","Apache","Grafana","OpenVPN","Amazon","Google"]
+keywords = ["Debian","MongoDB","Ubuntu","MySQL","PostgreSQL","Veeam","ClamAV","VMware","ElasticSearch","Elasticsearch","Apache","Grafana","OpenVPN","Amazon","Google","OpenSSL"]
 
 signal.signal(signal.SIGINT, handle_sigint)
 
@@ -39,7 +39,9 @@ rss_urls = [
     'https://www.zdnet.fr/feeds/rss/actualites/cyberattaque-4000237415q.htm',
     'https://www.archimag.com/taxonomy/term/2625/feed',
     'https://feed.infoq.com',
-    'https://blog.ovhcloud.com/feed/'
+    'https://blog.ovhcloud.com/feed/',
+    'https://www.nolimitsecu.fr/feed/',
+    'https://feeds.acast.com/public/shows/radio-devops'
     ]
 
 refresh_rate = 600
