@@ -19,7 +19,7 @@ def handle_sigint(signal, frame):
     sys.exit(0)
 
 # Important keywords
-keywords = ["Debian","MongoDB","Ubuntu","MySQL","PostgreSQL","Veeam","ClamAV","VMware","ElasticSearch","Elasticsearch","Apache","Grafana","OpenVPN","Amazon","Google","OpenSSL"]
+keywords = ["Debian","MongoDB","Ubuntu","MySQL","PostgreSQL","Veeam","ClamAV","VMware","ElasticSearch","Elasticsearch","Apache","Grafana","OpenVPN","Amazon","Google","OpenSSL","OpenSSH","Cloudflare"]
 
 signal.signal(signal.SIGINT, handle_sigint)
 
@@ -29,7 +29,6 @@ rss_urls = [
     'https://securite.developpez.com/index/rss',
     'https://www.it-connect.fr/actualites/actu-securite/feed/',
     'https://www.programmez.com/taxonomy/term/104/feed',
-    'https://www.undernews.fr/feed',
     'https://www.datasecuritybreach.fr/feed/',
     'https://www.lemonde.fr/piratage/rss_full.xml',
     'https://www.cnil.fr/fr/rss.xml',
@@ -41,7 +40,8 @@ rss_urls = [
     'https://feed.infoq.com',
     'https://blog.ovhcloud.com/feed/',
     'https://www.nolimitsecu.fr/feed/',
-    'https://feeds.acast.com/public/shows/radio-devops'
+    'https://feeds.acast.com/public/shows/radio-devops',
+    #'https://undernews.fr/feed'
     ]
 
 refresh_rate = 600
