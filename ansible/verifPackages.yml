@@ -1,0 +1,19 @@
+---
+- name: Check if package is in dpkg
+  hosts: all
+  become: yes
+  tasks:
+    - name: Check dpkg packages
+      command: dpkg -l | grep -w "{{ package_name }}"
+      register: package_check
+      ignore_errors: yes
+
+    - name: Print if package is present
+      debug:
+        msg: "Package {{ package_name }} is present."
+      when: package_check.rc == 0
+
+    - name: Print if package is absent
+      debug:
+        msg: "Package {{ package_name }} is absent."
+      when: package_check.rc != 0
