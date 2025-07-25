@@ -44,6 +44,7 @@ rss_urls = [
     'https://www.percona.com/blog/feed/',
     'https://www.nolimitsecu.fr/feed/',
     'https://azure.microsoft.com/en-us/blog/feed/',
+    'https://feeds.feedburner.com/TheHackersNews?format=xml',
     ]
 
 refresh_rate = 600
