@@ -41,7 +41,9 @@ rss_urls = [
     'https://blog.ovhcloud.com/feed/',
     'https://www.nolimitsecu.fr/feed/',
     'https://feeds.acast.com/public/shows/radio-devops',
-    #'https://undernews.fr/feed'
+    'https://www.percona.com/blog/feed/',
+    'https://www.nolimitsecu.fr/feed/',
+    'https://azure.microsoft.com/en-us/blog/feed/',
     ]
 
 refresh_rate = 600
