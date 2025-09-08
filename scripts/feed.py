@@ -45,6 +45,8 @@ rss_urls = [
     'https://www.nolimitsecu.fr/feed/',
     'https://azure.microsoft.com/en-us/blog/feed/',
     'https://feeds.feedburner.com/TheHackersNews?format=xml',
+    'https://cvefeed.io/rssfeed/latest.xml',
+    'https://cvefeed.io/rssfeed/severity/high.xml',
     ]
 
 refresh_rate = 600
