@@ -47,6 +47,7 @@ rss_urls = [
     'https://feeds.feedburner.com/TheHackersNews?format=xml',
     'https://cvefeed.io/rssfeed/latest.xml',
     'https://cvefeed.io/rssfeed/severity/high.xml',
+    'https://letsencrypt.org/feed.xml',
     ]
 
 refresh_rate = 600
