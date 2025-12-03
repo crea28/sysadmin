@@ -4,11 +4,11 @@
 |Subject|Link|
 |--|--|
 |Bash|[MementoBash](https://github.com/crea28/sysadmin/wiki/MementoBash)|
+|GNU-Debian|[MementoDebian](https://github.com/crea28/sysadmin/wiki/MementoDebian)|
 |Docker|[MementoDocker](https://github.com/crea28/sysadmin/wiki/MementoDocker)|
 |MySQL|[MementoMySQL](https://github.com/crea28/sysadmin/wiki/MementoMySQL)|
 |PostgreSQL|[MementoPostgreSQL](https://github.com/crea28/sysadmin/wiki/MementoPSQL)|
-|Tar|[MementoTar](https://github.com/crea28/sysadmin/wiki/MementoTar)|
-
+|Compression tools|[MementoCompression](https://github.com/crea28/sysadmin/wiki/MementoCompressionTools)|
 
 - **ansible :** contains .yml files can be used for ansible
 - **monitoring-scripts :** contains .sh files can be used for nagios/icinga2
