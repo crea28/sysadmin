@@ -48,6 +48,7 @@ rss_urls = [
     'https://cvefeed.io/rssfeed/latest.xml',
     'https://cvefeed.io/rssfeed/severity/high.xml',
     'https://letsencrypt.org/feed.xml',
+    'https://rss.beehiiv.com/feeds/8IfRpWATyI.xml',
     ]
 
 refresh_rate = 600
