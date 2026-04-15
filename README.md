@@ -5,6 +5,7 @@
 |--|--|
 |Bash|[MementoBash](https://github.com/crea28/sysadmin/wiki/MementoBash)|
 |GNU-Debian|[MementoDebian](https://github.com/crea28/sysadmin/wiki/MementoDebian)|
+|SysAdmin|[MementoSysAdmin](https://github.com/crea28/sysadmin/wiki/MementoSysAdmin)|
 |Docker|[MementoDocker](https://github.com/crea28/sysadmin/wiki/MementoDocker)|
 |MySQL|[MementoMySQL](https://github.com/crea28/sysadmin/wiki/MementoMySQL)|
 |PostgreSQL|[MementoPostgreSQL](https://github.com/crea28/sysadmin/wiki/MementoPSQL)|
