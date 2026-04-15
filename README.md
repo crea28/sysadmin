@@ -51,5 +51,24 @@ It's free to use and modify.
 |watermark.sh|create watermarked picture|
 |git-backup.sh|create backup of private and public repositories|
 
+- **vmware-scripts :** contains VMWare scripts
+
+|Script|Description|
+|--|--|
+|checkVM.py|Print VM informations|
+|costPerVM.py|Print the VM Cost (from variables)|
+|new_from_template.py||
+|start_vm.py|Start VM|
+|stop_vm.py|Stop VM|
+|updateVM.py|Update VM ressources|
+
+- **proxmox-scripts :** contains Proxmox scripts
+
+|Script|Description|
+|--|--|
+|createSnapshots.py|Create a VM snapshot|
+|listSnapshots.py|List all snapshots|
+|listVMs.py|List all VMs|
+
 ### Security Resources
 - [https://www.cisecurity.org/cis-benchmarks](https://www.cisecurity.org/cis-benchmarks)
