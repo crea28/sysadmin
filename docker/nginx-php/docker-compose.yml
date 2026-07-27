@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: site_nginx
+    restart: unless-stopped
+    ports:
+      - "8080:80"   # http://localhost:8080
+    volumes:
+      - ./www:/var/www/html 
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    depends_on:
+      - php
+    networks:
+      - site_network
+
+  php:
+    image: php:8.3-fpm-alpine
+    container_name: site_php
+    restart: unless-stopped
+    volumes:
+      - ./www:/var/www/html 
+    networks:
+      - site_network
+
+networks:
+  site_network:
+    driver: bridge
