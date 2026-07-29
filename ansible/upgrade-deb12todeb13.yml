@@ -1,0 +1,63 @@
+---
+# Playbook: Debian 12 (bookworm) -> Debian 13 (trixie) migration
+# Usage: ansible-playbook -i inventory upgrade-debian12-to-13.yml
+
+- name: Migrate Debian 12 to Debian 13
+  hosts: all
+  become: true
+
+  tasks:
+
+    - name: Update apt cache (before migration)
+      apt:
+        update_cache: yes
+
+    - name: Upgrade existing packages (bookworm)
+      apt:
+        upgrade: safe
+
+    - name: Remove unused packages
+      apt:
+        autoremove: yes
+
+    - name: Replace bookworm with trixie in sources.list
+      replace:
+        path: /etc/apt/sources.list
+        regexp: 'bookworm'
+        replace: 'trixie'
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: Find .list files in sources.list.d
+      find:
+        paths: /etc/apt/sources.list.d
+        patterns: "*.list"
+      register: sources_list_d_files
+
+    - name: Replace bookworm with trixie in sources.list.d
+      replace:
+        path: "{{ item.path }}"
+        regexp: 'bookworm'
+        replace: 'trixie'
+      loop: "{{ sources_list_d_files.files }}"
+      loop_control:
+        label: "{{ item.path }}"
+
+    - name: Update apt cache (trixie repositories)
+      apt:
+        update_cache: yes
+
+    - name: Full upgrade to Debian 13
+      apt:
+        upgrade: full
+        force_apt_get: yes
+
+    - name: Check if a reboot is required
+      stat:
+        path: /var/run/reboot-required
+      register: reboot_required
+
+    - name: Reboot the server if required
+      reboot:
+        msg: "Rebooting after Debian 13 migration"
+        reboot_timeout: 600
+      when: reboot_required.stat.exists
